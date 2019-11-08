@@ -1,21 +1,24 @@
-const {Client} = require('discord.js');
-const {config} = require('dotenv');
+const {Client, Collection} = require('discord.js');
+const Discord = require('discord.js');
+const {prefix, TOKEN} = require('./config.json');
+const chalk = require('chalk');
 
-// Declares our bot,
-// the disableEveryone prevents the client to ping @everyone
 const client = new Client({
 	disableEveryone: true
 });
 
-config({
-	path: __dirname + '/.env'
+const cooldowns = new Collection();
+
+client.commands = new Collection();
+client.aliases = new Collection();
+
+['command'].forEach(handler => {
+	require(`./handlers/${handler}`)(client);
 });
 
-// When the bot's online, what's in these brackets will be executed
 client.on('ready', () => {
-	console.log(`Hi, ${client.user.username} is now online!`);
+	console.log(chalk.blue(`Hi, ${client.user.username} is now online!`));
 
-	// Set the user presence
 	client.user.setPresence({
 		status: 'online',
 		game: {
@@ -25,10 +28,62 @@ client.on('ready', () => {
 	});
 });
 
-// When a message comes in, what's in these brackets will be executed
 client.on('message', async message => {
-	console.log(`${message.author.username} said: ${message.content}`);
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
+	const args = message.content.slice(prefix.length).split(/ +/);
+	const commandName = args.shift().toLowerCase();
+	const command =
+		client.commands.get(commandName) ||
+		client.commands.find(
+			cmd => cmd.aliases && cmd.aliases.includes(commandName)
+		);
+	console.info(chalk.green(`Called command: ${commandName}`));
+	console.info(chalk.magentaBright(`User- ${message.author.tag}`));
+	console.info(chalk.white('-------------------'));
+
+	if (commandName.length === 0) return;
+
+	// let command = client.commands.get(commandName);
+	if (!command) return;
+
+	if (command.args && !args.length) {
+		let reply = `You didn't provide any arguments, ${message.author}!`;
+
+		if (command.usage) {
+			reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
+		}
+
+		return message.channel.send(reply);
+	}
+
+	if (!cooldowns.has(command.name)) {
+		cooldowns.set(command.name, new Discord.Collection());
+	}
+	const now = Date.now();
+	const timestamps = cooldowns.get(command.name);
+	const cooldownAmount = (command.cooldown || 60) * 1000;
+	if (timestamps.has(message.author.id)) {
+		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+
+		if (now < expirationTime) {
+			const timeLeft = (expirationTime - now) / 1000;
+			return message.reply(
+				`please wait ${timeLeft.toFixed(
+					1
+				)} more second(s) before reusing the \`${command.name}\` command.`
+			);
+		}
+	}
+	timestamps.set(message.author.id, now);
+	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+
+	try {
+		command.execute(message, args, client);
+	} catch (error) {
+		console.error(error);
+		message.reply('there was an error trying to execute that command!');
+	}
+	// if (command) command.run(client, message, args);
 });
 
-// Login the bot
-client.login(process.env.TOKEN);
+client.login(TOKEN);
