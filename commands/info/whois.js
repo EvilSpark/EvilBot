@@ -5,11 +5,9 @@ const {getMember, formatDate} = require('../../functions.js');
 module.exports = {
 	name: 'whois',
 	aliases: ['who', 'user', 'info'],
-	args: false,
 	description: 'Returns user information',
 	usage: '[username | id | mention]',
-	cooldown: 5,
-	execute(message, args) {
+	run: (client, message, args) => {
 		const member = getMember(message, args.join(' '));
 
 		// Member variables

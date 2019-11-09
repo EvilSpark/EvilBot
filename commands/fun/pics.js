@@ -4,7 +4,7 @@ module.exports = {
 	args: true,
 	usage: '<short-name>',
 	cooldown: 1,
-	execute(message, args) {
+	run: (client, message, args) => {
 		if (args[0] === 'cz') {
 			var myArray = ['https://imgur.com/a/3GXED9F'];
 		} else if (args[0] === 'yc') {
@@ -62,9 +62,8 @@ module.exports = {
 		if (myArray) {
 			var randomItem = myArray[Math.floor(Math.random() * myArray.length)];
 			return message.channel.send(randomItem);
+		} else {
+			return message.reply('No such arguments');
 		}
-		return message.reply(
-			'\n```There is no such argument.\nAvailable arguments are yc, xl, mx, cw, xq, cyc, cz, cy and js.\nPlease wait 60 more second(s) before reusing the atgp command.```'
-		);
 	}
 };

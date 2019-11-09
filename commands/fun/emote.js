@@ -5,8 +5,8 @@ module.exports = {
 	description: 'Emotes',
 	args: true,
 	usage: '<emote-name>',
-	cooldown: 60,
-	execute(message, args) {
+	cooldown: 1,
+	run: (client, message, args) => {
 		if (args[0] === 'ricardo') {
 			var link = 'https://i.imgur.com/dLgr7Uj.gif';
 		} else if (args[0] === 'pikagun') {

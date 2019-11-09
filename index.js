@@ -44,7 +44,7 @@ client.on('message', async message => {
 	if (commandName.length === 0) return;
 
 	// let command = client.commands.get(commandName);
-	if (!command) return;
+	if (!command) command = client.commands.get(client.aliases.get(commandName));
 
 	if (command.args && !args.length) {
 		let reply = `You didn't provide any arguments, ${message.author}!`;
@@ -77,13 +77,26 @@ client.on('message', async message => {
 	timestamps.set(message.author.id, now);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
-	try {
-		command.execute(message, args, client);
-	} catch (error) {
-		console.error(error);
-		message.reply('there was an error trying to execute that command!');
-	}
-	// if (command) command.run(client, message, args);
+	// try {
+	// 	command.execute(message, args, client);
+	// } catch (error) {
+	// 	console.error(error);
+	// 	message.reply('there was an error trying to execute that command!');
+	// }
+	//if (command) command.run(client, message, args);
+
+	// try {
+	// 	command.run(client, message, args);
+	// } catch (error) {
+	// 	console.log(error);
+	// 	message.reply('there was an error trying to execute that command!');
+	// }
+
+	if (command) command.run(client, message, args);
+	// } else {
+	// 	console.log(error);
+	// 	message.reply('there was an error trying to execute that command!');
+	// }
 });
 
 client.login(TOKEN);
