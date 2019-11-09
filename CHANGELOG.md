@@ -1,7 +1,7 @@
 # Changelog
 
 <a name="1.0.0"></a>
-## 1.0.0 (2019-11-08)
+## 1.0.0 (2019-11-09)
 
 ### Added
 
@@ -10,6 +10,7 @@
 
 ### Changed
 
+- 🎨 Arrow Function [[24d2896](https://github.com/EvilSpark/EvilBot/commit/24d2896a65856f816b9cf63ecd064fc517a50280)]
 - ♿ Refragmenting the code. [[decb47e](https://github.com/EvilSpark/EvilBot/commit/decb47e436e842e73ab65dcfa0d2a4e15a31e005)]
 - 🎨 remove old lock file. [[f997845](https://github.com/EvilSpark/EvilBot/commit/f9978458f4146829d6b967eab3d72fa95540a2b0)]
 
