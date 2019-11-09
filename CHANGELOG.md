@@ -5,6 +5,7 @@
 
 ### Added
 
+- ✨ moderation [[0ccb872](https://github.com/EvilSpark/EvilBot/commit/0ccb87242402cadd72b5ade2914c0c245acc3748)]
 - ✨ ChangeLog [[4b621dc](https://github.com/EvilSpark/EvilBot/commit/4b621dc26e6b2e34622a70d9a9ecaa64e183b949)]
 - ✨ Wikia [[385c8df](https://github.com/EvilSpark/EvilBot/commit/385c8df15175ccbd6923471dfc530b1525aa2120)]
 
@@ -17,6 +18,10 @@
 ### Removed
 
 - 🔥 Added report and optimized stuff [[96571e2](https://github.com/EvilSpark/EvilBot/commit/96571e268b7e5cb938092f345af9baf5159c7ebb)]
+
+### Security
+
+- 🔒 Changelog stuff fixed [[dd1627f](https://github.com/EvilSpark/EvilBot/commit/dd1627f52a57a743438bfc9bc7d16be6197ec0dd)]
 
 ### Miscellaneous
 
