@@ -5,6 +5,7 @@
 
 ### Added
 
+- ✨ Meme, love, prune, report fix, rps [[f7c21fe](https://github.com/EvilSpark/EvilBot/commit/f7c21fec46c1c1f159d761acf575b48d9384df26)]
 - ✨ moderation [[0ccb872](https://github.com/EvilSpark/EvilBot/commit/0ccb87242402cadd72b5ade2914c0c245acc3748)]
 - ✨ ChangeLog [[4b621dc](https://github.com/EvilSpark/EvilBot/commit/4b621dc26e6b2e34622a70d9a9ecaa64e183b949)]
 - ✨ Wikia [[385c8df](https://github.com/EvilSpark/EvilBot/commit/385c8df15175ccbd6923471dfc530b1525aa2120)]
@@ -25,6 +26,7 @@
 
 ### Miscellaneous
 
+-  . [[a862753](https://github.com/EvilSpark/EvilBot/commit/a862753c3dd101e43e890b1fe13b13bfd7f960c0)]
 -  Initial commit [[489c431](https://github.com/EvilSpark/EvilBot/commit/489c431490a7689b4898bb66112ab6252904158a)]
 
 
