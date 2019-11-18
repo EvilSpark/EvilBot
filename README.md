@@ -2,7 +2,7 @@
 
 ## Steps to follow.
 
-   
+
 Step 1: Get a bot token.
 
 Step 2: Make sure u have node(>v8) installed.
