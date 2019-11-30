@@ -6,7 +6,7 @@ const cheerio = require("cheerio");
 module.exports = {
   name: "nshba",
   description: "Get latest chap title of Nine Star Hegemon Body Art.",
-  cooldown: 30,
+  cooldown: 10,
   args: false,
   run: async (client, message, args) => {
     fetch("http://h5.17k.com/book/1398783.html")

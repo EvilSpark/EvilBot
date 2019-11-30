@@ -6,7 +6,7 @@ const cheerio = require("cheerio");
 module.exports = {
   name: "mcbw",
   description: "Get latest chap title of My Cold and Beautiful Wife.",
-  cooldown: 30,
+  cooldown: 10,
   args: false,
   run: async (client, message, args) => {
     fetch("http://www.iyoule.com/book/4/")

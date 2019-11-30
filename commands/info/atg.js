@@ -1,14 +1,14 @@
 const Discord = require("discord.js");
 const fetch = require("node-fetch");
-const { checkStatus } = require("../utility.js");
+const { checkStatus } = require("../../utility.js");
 const cheerio = require("cheerio");
 
 module.exports = {
   name: "atg",
   description: "Get latest chap title",
-  cooldown: 30,
+  cooldown: 10,
   args: false,
-  async execute(message) {
+  run: async (client, message, args) => {
     fetch("http://book.zongheng.com/book/408586.html")
       .then(checkStatus)
       .then(res => {
@@ -26,6 +26,7 @@ module.exports = {
             .text();
           const exampleEmbed = new Discord.RichEmbed()
             .setColor("#002733")
+            .setTitle("ATG Chapter Number")
             .setDescription(title);
           return message.channel.send({ embed: exampleEmbed });
         } else {
